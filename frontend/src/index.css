@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --background: 40 33% 98%;
+    --foreground: 24 10% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 24 10% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 24 10% 10%;
+    --primary: 0 100% 25%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 46 63% 81%;
+    --secondary-foreground: 0 100% 14%;
+    --muted: 40 20% 94%;
+    --muted-foreground: 24 5% 45%;
+    --accent: 43 74% 52%;
+    --accent-foreground: 24 10% 10%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 43 50% 85%;
+    --input: 43 50% 85%;
+    --ring: 43 74% 52%;
+    --chart-1: 0 100% 25%;
+    --chart-2: 43 74% 52%;
+    --chart-3: 24 60% 50%;
+    --chart-4: 120 40% 45%;
+    --chart-5: 30 80% 55%;
+    --radius: 0.75rem;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #FDFBF7;
+    color: #1C1917;
+}
+
+.font-serif {
+    font-family: "Playfair Display", serif;
+}
+
+.font-sans {
+    font-family: "Manrope", sans-serif;
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #F5F5F4;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #D4AF37;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #B8962E;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse-gold {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 0 10px rgba(212, 175, 55, 0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-slide-up {
+    animation: slideUp 0.6s ease-out forwards;
+}
+
+.animate-pulse-gold {
+    animation: pulse-gold 2s infinite;
+}
+
+/* Stagger children animations */
+.stagger-children > * {
+    animation: fadeIn 0.4s ease-out forwards;
+    opacity: 0;
+}
+
+.stagger-children > *:nth-child(1) { animation-delay: 0.1s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.2s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.3s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.4s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.5s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.6s; }
+
+/* Card hover effects */
+.card-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(212, 175, 55, 0.2);
+}
+
+/* Donut chart styles */
+.donut-chart {
+    transform: rotate(-90deg);
+}
+
+.donut-segment {
+    transition: stroke-dashoffset 0.8s ease-out;
+}
+
+/* Chip/pill styles */
+.chip {
+    @apply px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 cursor-pointer;
+}
+
+.chip-active {
+    @apply bg-[#800000] text-white;
+}
+
+.chip-inactive {
+    @apply bg-[#F3E5AB]/50 text-[#4A0404] hover:bg-[#F3E5AB];
+}
+
+/* Form input focus styles */
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #D4AF37;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+}
+
+/* Button styles */
+.btn-primary {
+    @apply bg-[#800000] text-white rounded-full px-6 py-3 font-medium transition-all duration-200;
+}
+
+.btn-primary:hover {
+    @apply bg-[#600000] scale-105;
+}
+
+.btn-primary:active {
+    @apply scale-95;
+}
+
+.btn-secondary {
+    @apply bg-[#D4AF37] text-[#1C1917] rounded-full px-6 py-3 font-medium transition-all duration-200;
+}
+
+.btn-secondary:hover {
+    @apply bg-[#B8962E] scale-105;
+}
+
+/* Status badges */
+.status-pending {
+    @apply bg-orange-100 text-orange-800;
+}
+
+.status-in-progress {
+    @apply bg-[#D4AF37] text-[#1C1917];
+}
+
+.status-done {
+    @apply bg-green-600 text-white;
+}
+
+/* Debug wrapper fix */
+@layer base {
+    [data-debug-wrapper="true"] {
+        display: contents !important;
+    }
+}
